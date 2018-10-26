@@ -32,6 +32,10 @@ Open browser on localhost:5000
 ```
 
 ### Heroku Deploy
+
+In package.json, there is a command *postinstall* that heroku will run after npm install 
+and will build the dist folder with the minified code. The production server will use this folder.
+
 ``` bash
 # Clone repository
 git clone https://github.com/PedroS11/vuejs-heroku-boilerplate.git
