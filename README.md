@@ -1,21 +1,44 @@
-# vuejs-vuetify-heroku-boilerplate
+# Vue JS app to be deployed on Heroku
 
-> A Vue.js project
+> This project provides an VueJs app that can be deployed on heroku and 
+has vuetify support
 
 ## Build Setup
 
-``` bash
-# install dependencies
+### Development (local)
+```
+# Install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# Run dev server
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+Open browser on localhost:8080
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+### Production (local)
+```
+# Build for production with minification
+npm run build
+
+# Build for production and view the bundle analyzer report
+npm run build --report
+
+# Run production server
+npm start
+
+Open browser on localhost:5000
+```
+
+### Heroku Deploy
+``` bash
+# Clone repository
+git clone https://github.com/PedroS11/vuejs-heroku-boilerplate.git
+
+# Connect your herokuapp to the Github repository using Heroku Dashboard -> Deploy
+
+# Enable Automatic Deploy and select the deploy branch
+
+# Then, after each commit to the repo, Heroku will deploy your new version
+```
