@@ -6,6 +6,8 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+import '@/assets/global.css'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

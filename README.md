@@ -1,3 +1,9 @@
+# Dette prosjektet bruker følgende api
+made by Kristian og Lise
+
+https://documenter.getpostman.com/view/6341475/SVfRs7bN?version=latest#e076cee9-f29d-4753-a87e-e889c35a61d5
+
+
 # Vue JS app to be deployed on Heroku
 
 > This project provides an VueJs app that can be deployed on heroku and 

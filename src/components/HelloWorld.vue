@@ -1,102 +1,73 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+  <div>
+    <center>
+    
+    <div v-if="allPlanets.length === 0" class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    </center>
+
+
+
+    <div class="row">
+
+    <div v-for="planet in allPlanets" :key="planet.id">
+      <planet-card :planetProp="planet" ></planet-card>
+    </div>
+
+    </div>
+
+
+
+
+
   </div>
+  
+
 </template>
 
 <script>
+import planetsDao from "../services/PlanetApiService";
+import PlanetCard from "../components/PlanetCard.vue";
 export default {
-  name: 'HelloWorld',
-  data () {
+  name: "HelloWorld",
+  components: {
+    PlanetCard
+  },
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: "Welcome to Your Vue.js App",
+      allPlanets: []
+    };
+  },
+  async created() {
+    console.log("______________________________");
+    try {
+      const data = await planetsDao.getAllPlanets();
+      this.allPlanets = data;
+      console.log(this.allPlanets);
+    } catch (error) {
+      console.error(error);
     }
+
+    // console.log(`${this.allPlanets} AAAAAAAAAAAAA`);
+    // console.log("_________________");
+    // console.log(`this.$el doesn't exist yet, but it will soon!`);
+    // // console.log(this.allPlanets)
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+
+.flex-container {
+  /* display: flex; */
+  /* justify-content: center;  */
+}
+
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
