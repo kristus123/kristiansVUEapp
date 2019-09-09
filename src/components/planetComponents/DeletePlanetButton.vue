@@ -38,7 +38,10 @@ export default {
      },
    
     deletePlanet: async function() {
-      console.log(this.planet);
+      this.$store.state.totalPlanets = this.$store.state.totalPlanets ="askdaksd" ;
+      
+      console.log( + " " + "a9sd9asd9asdkjaskdaksd")
+      // console.log(this.planet);
       console.log("DELETING");
       this.msg = "waiting";
       try {

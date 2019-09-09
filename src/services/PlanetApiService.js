@@ -1,26 +1,24 @@
 import axios from 'axios';
 
+const instance = axios.create({
+    baseURL: 'https://cors-anywhere.herokuapp.com/https://thawing-savannah-59760.herokuapp.com',
+    // timeout: 10000,
+    headers: {
+        Authorization: `BEARER ${localStorage.getItem('username')}`
+    }
+  });
+
+
 class PlanetsDAO {
 
-    constructor() {
-        this.url = "https://cors-anywhere.herokuapp.com/https://thawing-savannah-59760.herokuapp.com";
-    }
-
-
     deletePlanet(id) {
-
-
-        return axios.delete(
-            (`${this.url}/api/v1/planet/deletePlanet`),
+        return instance.delete(
+            (`/api/v1/planet/deletePlanet`),
             {
-                headers: {
-                    Authorization: "BEARER 51f5bc31f7366312b0dd050be5e4af4b2780a9a92d10119738fdb560d39509b9"
-                },
                 data: {
                     planetID: id
                 }
             }
-
         ).then(response => {
             if (response.data.success) {
                 return response.data.success
@@ -32,18 +30,23 @@ class PlanetsDAO {
     }
 
 
+    updatePlanet() {
+        return instance.patch('/api/v1/planet/updatePlanet', 
+        {
+            "planetID": 2,
+            "date_discovered": "yesterday",
+            "name": "kristian og lise sin planet",
+            "size": "bigger than all the rest"
+        }).then(response => {return response.data})
+    }
+
+
     addPlanet(planetName, planetSize, planetDiscovered) {
-        return axios.post(`${this.url}/api/v1/planet/insertPlanet`,
+        return instance.post(`/api/v1/planet/insertPlanet`,
             {
                 "date_discovered": planetDiscovered,
                 "name": planetName,
                 "size": planetSize
-            },
-
-            {
-                headers: {
-                    Authorization: "BEARER 51f5bc31f7366312b0dd050be5e4af4b2780a9a92d10119738fdb560d39509b9"
-                }
             }
         ).then(response => {
             console.log(response.data);
@@ -52,23 +55,22 @@ class PlanetsDAO {
         console.log("hello")
     }
 
-
-
     getAllPlanets() {
-
-        return axios.get(`${this.url}/api/v1/planet/getAllPlanets`,
-            {
-                headers:
-                {
-                    Authorization: "BEARER 51f5bc31f7366312b0dd050be5e4af4b2780a9a92d10119738fdb560d39509b9"
-                    // origin: "http://google.com/"
-                }
+        // console.log(store);
+        return instance.get(`/api/v1/planet/getAllPlanets`)
+            .then(response => {
+                return response.data
             }
+        )
+    }
 
-        ).then(response => {
-            return response.data
-        })
-
+    generateApiKey() {
+        return instance.post('/api/v1/auth/generate-key')
+            .then(response => {
+                localStorage.setItem('username', response.data.key)
+                console.log(response.data.key);
+                return response.data.key;
+            })
     }
 
 }

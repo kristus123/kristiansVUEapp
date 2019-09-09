@@ -10,14 +10,18 @@ import RegisterPage from '@/pages/RegisterPage'
 import LoginPage from '@/pages/LoginPage'
 
 
-import Vuetify from 'vuetify'
+// import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
 
-Vue.use(Router)
-Vue.use(Vuetify)
+import { store } from '../main.js'
 
-export default new Router({
+Vue.use(Router)
+
+
+
+const router = new Router({
+
   mode: 'history',
   routes: [
     {
@@ -45,8 +49,22 @@ export default new Router({
       name: 'LoginPage',
       component: LoginPage
     }
-    
+
 
 
   ]
 })
+
+
+
+
+router.beforeEach((to, from, next) => {
+  next()
+});
+
+
+
+
+
+
+export default router;

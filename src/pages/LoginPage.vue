@@ -1,33 +1,33 @@
 <template>
   <div>
-    <center>
-      <h1>LOGG INN</h1>
-
-      
-        <div class="form-group">
-          <label for="exampleInputEmail1">Bruk din API-key</label>
-         
-          <input
-            type="text"
-            class="form-control auth-input"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-          />
-          <small
-            id="emailHelp"
-            class="form-text text-muted"
-          >Vi kommer til å selge denne informasjonen litt senere</small>
-        </div>
-
-        <hr class="short">
-        <button type="submit" class="btn btn-primary">Logg inn</button>
-        <hr class="short">
-    </center>
+    <!-- {{this.$store.state.isLoggedIn}} -->
+    <login-form v-if="!this.$store.state.isLoggedIn"> </login-form>
+   
+    <div v-else>
+      <h1>hei allerede logget inn </h1>
+      <logout-button> </logout-button>  
+    </div>
+  
   </div>
 </template>
 
 
 <script>
-export default {};
+
+import LogoutButton from '@/components/authComponent/LogoutButton';
+import LoginForm from '@/components/authComponent/LoginForm';
+
+
+import authService from '@/services/AuthService.js'
+
+export default {
+  components : {LogoutButton, LoginForm},
+
+  data : function() {
+    return {
+      username : "",
+      isLoggedIn : authService.isAuthenticated()
+    }
+  }
+}
 </script>
