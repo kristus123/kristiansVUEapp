@@ -57,7 +57,6 @@ export default {
     goToPlanet: function() {
       console.log("GOING");
       console.log(this.planetProp.id);
-
       this.$router.push(`/MoreInfo/${this.planetProp.id}`);
     }
   }

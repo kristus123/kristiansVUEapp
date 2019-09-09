@@ -30,14 +30,9 @@ class PlanetsDAO {
     }
 
 
-    updatePlanet() {
-        return instance.patch('/api/v1/planet/updatePlanet', 
-        {
-            "planetID": 2,
-            "date_discovered": "yesterday",
-            "name": "kristian og lise sin planet",
-            "size": "bigger than all the rest"
-        }).then(response => {return response.data})
+    updatePlanet(objekt) {
+        return instance.patch('/api/v1/planet/updatePlanet', objekt)
+            .then(response => {return response.data})
     }
 
 

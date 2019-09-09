@@ -3,13 +3,13 @@
     <div v-if="this.$store.state.isLoggedIn">
       <div class="row">
         <div class="col-sm">
+          <!-- <info-cards></info-cards> -->
+        </div>
+        <div class="col-sm">
           <info-cards :value="allPlanets.length" title="Antall planeter"></info-cards>
         </div>
         <div class="col-sm">
-          <info-cards></info-cards>
-        </div>
-        <div class="col-sm">
-          <info-cards></info-cards>
+          <!-- <info-cards></info-cards> -->
         </div>
       </div>
 
