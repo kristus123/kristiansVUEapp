@@ -1,17 +1,9 @@
 <template>
   <div>
     <center>
-      <!-- <h1>{{this.$authService.state.isLoggedIn}}</h1> -->
-      <!-- {{username}} -->
-      <!-- {{this.$store.state.isLoggedIn}} -->
       <div class="form-group">
         <div v-if="this.$store.state.isLoggedIn">
           <h1>du er allerede logget inn</h1>
-
-          <hr class="short" />
-          <!-- <logout-button></logout-button> -->
-          <!-- <button type="submit" class="btn btn-danger" v-on:click="logout" >Logg ut</button> -->
-          <hr class="short" />
         </div>
 
         <div v-else>
@@ -42,18 +34,16 @@
 
 
 <script>
-// import LogoutButton from "@/components/authComponent/LogoutButton";
 import authService from "@/services/AuthService.js";
-// import from "@/components/authComponent/LogoutButton";
 
 export default {
-  // components: { LogoutButton },
   data: function() {
     return {
       username: null
     };
   },
   methods: {
+
     login: function() {
       this.$store.state.isLoggedIn = true;
       authService.login(this.username);
@@ -64,16 +54,6 @@ export default {
     }
   }
 };
-
-// export default {
-//   components : {LogoutButton},
-
-//   data : function() {
-//     return {
-//       username : ""
-//     }
-//   }
-// }
 </script>
 
 

@@ -5,17 +5,19 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    isLoggedin: authService.isAuthenticated()
+    componentKey : 'aa',
+    isLoggedIn: authService.isAuthenticated(),
+    planetObject : { id: 1, name: "hei", size : "stor", date_discovered: "idag" }
   },
-  mutations: {
+mutations: {
 
-  },
-  actions: {
+},
+actions: {
 
-  },
-  getters: {
+},
+getters: {
 
-  }
+}
 });
 
 

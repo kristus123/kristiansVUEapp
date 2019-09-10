@@ -72,11 +72,11 @@
 
 
 <script>
-import PlanetFormHelperVue from "./PlanetFormHelper.vue";
+// import PlanetFormHelperVue from "./PlanetFormHelper.vue";
 import planetsDao from "../services/PlanetApiService";
 
 export default {
-  components: [PlanetFormHelperVue],
+  // components: [PlanetFormHelperVue],
 
   data: function() {
     return {

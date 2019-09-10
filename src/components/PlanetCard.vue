@@ -55,9 +55,15 @@ export default {
     },
 
     goToPlanet: function() {
+      // this.$store.state.componentKey += 1;
       console.log("GOING");
-      console.log(this.planetProp.id);
-      this.$router.push(`/MoreInfo/${this.planetProp.id}`);
+      this.$store.state.planetObject  = this.planetProp;
+      console.log(this.planetProp)
+      console.log("________________________")
+      console.log(this.$store.state.planetObject)
+      console.log(this.$store.state.planetObject.name);
+
+      document.getElementById("mySidenav").style.width = "400px";
     }
   }
 };

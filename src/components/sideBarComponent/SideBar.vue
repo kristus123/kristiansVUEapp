@@ -1,41 +1,130 @@
 <template>
   <div>
     <div id="mySidenav" class="sidenav">
+      <center>
+        <h1>planet nr.{{this.$store.state.planetObject.id}}</h1>
+      </center>
+
       <a class="closebtn" v-on:click="closeNav">×</a>
-      
+
       <!-- innmat -->
 
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
-      
+      <div class="container">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" v-model="getName" name="name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>Size</label>
+          <input
+            type="text"
+            v-model="this.$store.state.planetObject.size"
+            class="form-control"
+            placeholder="Size of the planet"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Date discovered</label>
+          <input
+            type="text"
+            v-model="this.$store.state.planetObject.date_discovered"
+            planetObject
+            class="form-control"
+            placeholder="planets Date of discovery"
+          />
+        </div>
+      </div>
+
+      <center>
+        <button v-if="!loading" class="btn btn-primary" v-on:click="updatePlanet">oppdater</button>
+        <button v-else class="btn btn-primary" disabled>Venter</button>
+      </center>
+
       <!-- innmat -->
-    
-    </div>
-    <div class="container-fluid">
-                    <button class="btn btn-outline btn-dark" v-on:click="openNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
     </div>
   </div>
 </template>
 
 
 <script>
+import planetsDao from "@/services/PlanetApiService.js";
+
 export default {
-  name: "side-bar",
+
+  computed: {
+    // a computed getter
+    getName: {
+      get : function() {return this.$store.state.planetObject.name},
+
+      set: function (value) {
+        console.log(value)
+        this.name = value
+      
+    }
+      // `this` points to the vm instance
+    }
+  },
+
+
+  data: function() {
+    return {
+      loading: false,
+      name: null
+    };
+  },
+
   methods: {
     openNav: function() {
-      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("mySidenav").style.width = "400px";
     },
 
     closeNav: function() {
       document.getElementById("mySidenav").style.width = "0";
+    },
+
+    updatePlanet: async function() {
+      this.loading = true;
+      console.log("oppdaterer planet");
+      // console.log(this.$store.state.planetObject.id);
+      
+      
+      console.log(this.name)
+      await planetsDao.updatePlanet({
+        planetID: this.$store.state.planetObject.id,
+        date_discovered: this.$store.state.planetObject.date_discovered,
+        name: this.name,
+        size: this.$store.state.planetObject.size
+      });
+      this.loading = false;
+
+      document.getElementById("mySidenav").style.width = "0px";
+      location.reload();
+
+      // console.log(this.$store.state.planetObject.name);
     }
   }
 };
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <style scoped>
@@ -78,5 +167,16 @@ export default {
   .sidenav a {
     font-size: 18px;
   }
+}
+
+input {
+  margin-left: 40px;
+  max-width: 80%;
+  /* align-content: center */
+}
+
+h1,
+label {
+  color: white;
 }
 </style>
